@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('variant', ['A', 'B', 'C', 'D']);
             $table->integer('task_number');
+            $table->enum('type', ['select', 'update']);
             $table->text('conditions'); // условия задачи
             $table->text('solution'); // ее правильное решение
             $table->text('answer'); //ответ после правильного выполнения

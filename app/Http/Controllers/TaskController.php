@@ -55,7 +55,7 @@ class TaskController extends Controller
         $user = Auth::user();
 
         $task = Task::where('variant', $user->variant)
-            ->findOnFail($id);
+            ->find($id);
 
 
         return response()->json($task);
@@ -66,7 +66,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $answer = Task::findOnFail($id);
+        $answer = Task::find($id);
 
         $validated = $request->validate([
             'variant' => 'required|in:A,B,C,D',

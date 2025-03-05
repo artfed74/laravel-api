@@ -47,28 +47,30 @@ class GroupController extends Controller
     /**
      * Обновление балов за групповые задания
      */
+
+
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'task' => 'required|in:score_task_1,score_task_2',
+            'task' => 'required|in:score_task_1,score_task_2,score_task_3,score_task_4', // добавлено score_task_3 и score_task_4
             'score' => 'required|integer|min:0'
         ]);
 
         $group = Group::findOrFail($id);
 
+        // Увеличиваем соответствующий счет на значение из запроса
         $group->{$validated['task']} += $validated['score'];
 
-        $group->total_score = $group->score_task_1 + $group->score_task_2;
+        // Пересчитываем total_score, учитывая все task'и
+        $group->total_score = $group->score_task_1 + $group->score_task_2 + $group->score_task_3 + $group->score_task_4;
 
         $group->save();
 
         return response()->json(['message' => 'Баллы за задание обновлены!', 'group' => $group], 200);
-
     }
 
-    /**
-     * Удаление группы ?
-     */
+
+
     public function destroy(string $id)
     {
         //

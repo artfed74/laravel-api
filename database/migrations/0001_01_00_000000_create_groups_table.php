@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('score_task_1')->default(0);
             $table->integer('score_task_2')->default(0);
+            $table->integer('score_task_3')->default(0);
+            $table->integer('score_task_4')->default(0);
             $table->integer('total_score')->default(0);
             $table->timestamps();
         });
